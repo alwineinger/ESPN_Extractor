@@ -19,3 +19,5 @@ config.py
 # IDE settings
 .idea
 .vscode
+
+venv*

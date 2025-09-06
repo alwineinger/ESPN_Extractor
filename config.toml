@@ -1,0 +1,35 @@
+# Copy to config.toml and fill in your values.
+[league]
+league_id = 293554
+season_year = 2025
+# If omitted, current scoring period is used.
+# scoring_period = 1
+
+# Your ESPN team id (1..N)
+my_team_id = 5
+
+[auth]
+# Required for private leagues. Keep the braces on SWID.
+espn_s2 = "AEBDfTcWxaY0Pgob45gd9UIqR08cevTuV4Rvsh%2FCyBOod2tQM0PiNN6MSWFYWQZjsAN4%2BpJe4IN178cm4r%2FQp%2BGLGmQNLHyveaw0Mve20ESn6fy8ApeSIEajNR2c4rMNy2JC3rVxGJXYD6%2BVm0JU7O1PoDT4rhaxcr2%2FUVLOrAZYa3LI6%2Fo%2FYDeAMipMhJm3r1SRnhkmG2y6BMgJRTELBPphrqB5NmVNjqXQDtbGsvkoapaUqNRIm%2BanApxOJ8z4pAh%2BMQYEBlX%2BjFL3WZ1Dm2%2FPlkwTx7BZG1Uv62IcaPvxbg%3D%3D"
+swid    = "{3CAEAB1D-0B11-472C-B883-E1796D2817B8}"
+
+[output]
+dir = "data"
+write_xlsx = true
+xlsx_path  = "data/league_export.xlsx"
+
+[advice]
+start_sit_threshold = 1.5
+advice_lock_positions = ["D/ST","K"]       # <-- stays here (NOT under per_position_thresholds)
+free_agent_pool_size = 50
+positions = ["QB","RB","WR","TE","D/ST","K","FLEX","OP"]
+projection_mode = "league_plus_thresholds"
+
+[advice.per_position_thresholds]            # <-- only numbers here
+QB = 1.0
+RB = 1.5
+WR = 1.5
+TE = 1.2
+"D/ST" = 3.0
+K = 3.0
+

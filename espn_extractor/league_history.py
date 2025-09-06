@@ -5,7 +5,7 @@ League history extraction.
 Production mode:
     - Pulls team history from ESPN via `espn_api`, one season at a time.
     - If a given season fails (403/404/rate-limit), it logs and skips that season.
-    - It will still write the output file (at least the header), so prod runs
+    - It still writes the output file (at least the header), so prod runs
       don't silently produce nothing.
 
 Test/offline mode:
@@ -14,13 +14,6 @@ Test/offline mode:
 
 Public API:
     extract_team_records(config, test_mode=False)
-
-`config` should provide:
-    - league_id: int
-    - start_year: int
-    - end_year: int
-    - out_file: str (path to CSV or pipe-delimited file)
-    - delimiter: str ("," or "|" etc.)
 """
 
 from __future__ import annotations
@@ -241,6 +234,9 @@ class _ConfigLike:
     end_year: int
     out_file: str
     delimiter: str = ","
+    espn_s2: Optional[str] = None
+    swid: Optional[str] = None
+    debug: bool = False
 
 
 def _write_rows(path: str, delimiter: str, rows: Iterable[Dict[str, Any]]) -> None:
@@ -252,7 +248,6 @@ def _write_rows(path: str, delimiter: str, rows: Iterable[Dict[str, Any]]) -> No
 
 
 def _write_offline_fixture(config: _ConfigLike) -> None:
-    # For tests we only need a stable year (2018) & known rows
     _write_rows(config.out_file, config.delimiter, _SAMPLE_HISTORY_2018)
 
 
@@ -273,7 +268,7 @@ def _resolve_owner(team: Any) -> str:
         getattr(team, "owner", None),
         getattr(team, "owners", None),
         getattr(team, "primary_owner", None),
-        getattr(team, "primaryOwner", None),  # legacy camelCase just in case
+        getattr(team, "primaryOwner", None),
     ]
     for cand in candidates:
         if cand:
@@ -301,12 +296,22 @@ def _iter_production_rows(config: _ConfigLike) -> Iterable[Dict[str, Any]]:  # p
 
     for year in range(config.start_year, config.end_year + 1):
         try:
-            league = FF_LEAGUE(league_id=config.league_id, year=year)
-        except Exception as exc:  # narrow handling inside year loop
-            print(f"[league_history] Skipping {year}: failed to fetch league ({exc})", file=sys.stderr)
+            league = FF_LEAGUE(
+                league_id=config.league_id,
+                year=year,
+                espn_s2=config.espn_s2,
+                swid=config.swid,
+                fetch_league=False,
+                debug=config.debug,
+            )
+            league.fetch_league()  # explicit fetch so we can control failures
+        except Exception as exc:
+            print(
+                f"[league_history] Skipping {year}: failed to fetch league ({exc})",
+                file=sys.stderr,
+            )
             continue
 
-        # Build rows from league.teams — keep keys aligned with _HEADERS
         for team in getattr(league, "teams", []):
             yield {
                 "owner": _resolve_owner(team),
@@ -315,15 +320,21 @@ def _iter_production_rows(config: _ConfigLike) -> Iterable[Dict[str, Any]]:  # p
                 "win": getattr(team, "wins", 0),
                 "loss": getattr(team, "losses", 0),
                 "draws": getattr(team, "ties", 0),
-                "final_standing": getattr(team, "final_standing", getattr(team, "finalStanding", 0)),
+                "final_standing": getattr(
+                    team, "final_standing", getattr(team, "finalStanding", 0)
+                ),
                 "points_for": getattr(team, "points_for", 0.0),
                 "points_against": getattr(team, "points_against", 0.0),
                 "acquisitions": getattr(team, "acquisitions", 0),
                 "trades": getattr(team, "trades", 0),
                 "drops": getattr(team, "drops", 0),
                 "streak_length": getattr(team, "streak_length", 0),
-                "streak_type": getattr(team, "streak_type", getattr(team, "streakType", "")),
-                "playoff_seed": getattr(team, "playoff_seed", getattr(team, "playoffSeed", 0)),
+                "streak_type": getattr(
+                    team, "streak_type", getattr(team, "streakType", "")
+                ),
+                "playoff_seed": getattr(
+                    team, "playoff_seed", getattr(team, "playoffSeed", 0)
+                ),
             }
 
 
@@ -332,7 +343,8 @@ def extract_team_records(config: _ConfigLike, test_mode: bool = False) -> None:
     Write a CSV (or pipe-delimited) file of league history rows.
 
     Args:
-        config: object with league_id, start_year, end_year, out_file, delimiter.
+        config: object with league_id, start_year, end_year, out_file, delimiter,
+                espn_s2, swid, debug.
         test_mode: when True, do NOT access the ESPN API; emit a stable offline fixture.
 
     Behavior:

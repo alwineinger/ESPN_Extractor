@@ -1,0 +1,48 @@
+# Copy to config.toml and fill in your values.
+[league]
+league_id = 293554
+season_year = 2025
+# If omitted, current scoring period is used.
+# scoring_period = 1
+
+# Your ESPN team id (1..N)
+my_team_id = 23
+
+[auth]
+# Required for private leagues. Keep the braces on SWID.
+espn_s2 = "YOUR_ESPN_S2_COOKIE"
+swid    = "{YOUR_SWID_COOKIE}"
+
+[output]
+dir = "espn_extractor/data"
+write_xlsx = true
+xlsx_path  = "espn_extractor/data/league_export.xlsx"
+
+[advice]
+# Global minimum projected-points delta for a start/sit recommendation.
+start_sit_threshold = 1.5
+
+# Optional per-position thresholds override the global value.
+# (Example below: make D/ST & K harder to move)
+[advice.per_position_thresholds]
+QB = 1.0
+RB = 1.5
+WR = 1.5
+TE = 1.2
+"D/ST" = 3.0
+K = 3.0
+
+# Lock positions: never recommend swaps involving these positions
+# (good if you want to “set and forget” D/ST or K unless you change this).
+advice_lock_positions = ["D/ST", "K"]
+
+# How many FAs to evaluate per position for add/waiver suggestions
+free_agent_pool_size = 50
+
+# Positions to export/evaluate when pulling free agents
+positions = ["QB", "RB", "WR", "TE", "D/ST", "K", "FLEX", "OP"]
+
+# Projection source:
+# - "league" (default): trust ESPN’s projections for your league (respects PPR vs standard automatically).
+# - "league_plus_thresholds": same as league, but only your thresholds change behavior (recommended).
+projection_mode = "league_plus_thresholds"

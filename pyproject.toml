@@ -23,3 +23,7 @@ argparse = "^1.4.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+espn-extract = "espn_extractor.cli:main"

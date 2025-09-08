@@ -270,6 +270,56 @@ def export_free_agents(league: League, out_dir: str, pool_size: int, positions: 
     return df
 
 
+def export_upcoming_pro_schedule(league: League, out_dir: str) -> pd.DataFrame:
+    """Export today's and future NFL pro games.
+
+    The ``espn_api`` schedule repeats games for each team.  We deduplicate using
+    ``gameId`` and only keep matchups scheduled for today or later (Eastern
+    Time).  Results are written to ``pro_schedule_upcoming.csv`` in ``out_dir``.
+    """
+
+    tz_et = tz.gettz("America/New_York")
+    today = datetime.now(tz_et).date()
+    schedule = league._get_all_pro_schedule()
+
+    seen: set[int] = set()
+    rows: List[Dict[str, Any]] = []
+    for team_sched in schedule.values():
+        for week, games in (team_sched or {}).items():
+            for g in games:
+                game_id = g.get("gameId") or g.get("id")
+                if game_id in seen:
+                    continue
+
+                raw_date = g.get("date") or g.get("gameDate")
+                if isinstance(raw_date, str):
+                    try:
+                        game_dt = datetime.fromisoformat(raw_date.replace("Z", "+00:00")).astimezone(tz_et)
+                    except ValueError:
+                        continue
+                else:
+                    try:
+                        game_dt = datetime.fromtimestamp(float(raw_date) / 1000, tz_et)
+                    except Exception:
+                        continue
+
+                if game_dt.date() >= today:
+                    rows.append(
+                        {
+                            "week": int(week),
+                            "game_id": game_id,
+                            "game_date": game_dt.strftime("%Y-%m-%d"),
+                            "home_team_id": g.get("homeProTeamId"),
+                            "away_team_id": g.get("awayProTeamId"),
+                        }
+                    )
+                    seen.add(game_id)
+
+    df = pd.DataFrame(rows).sort_values(["game_date", "game_id"]).reset_index(drop=True)
+    df.to_csv(os.path.join(out_dir, "pro_schedule_upcoming.csv"), index=False)
+    return df
+
+
 # --------------------------
 # Analysis (Start/Sit & Trades)
 # --------------------------
@@ -486,6 +536,7 @@ def main() -> None:
     df_rosters = export_rosters(league, cfg.out_dir, week)
     df_current_rosters = export_current_team_rosters(league, cfg.out_dir)
     df_free = export_free_agents(league, cfg.out_dir, cfg.free_agent_pool_size, cfg.positions)
+    df_pro = export_upcoming_pro_schedule(league, cfg.out_dir)
 
     # Advice
     advice_items: List[Dict[str, Any]] = []
@@ -502,6 +553,7 @@ def main() -> None:
             f"rosters_wk_{week}": df_rosters,
             "free_agents": df_free,
             "current_rosters": df_current_rosters,
+            "pro_schedule": df_pro,
         })
 
     print("Done.")

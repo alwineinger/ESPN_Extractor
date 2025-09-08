@@ -19,6 +19,7 @@ Public API:
 from __future__ import annotations
 
 import csv
+import os
 import sys
 from dataclasses import dataclass
 from typing import Iterable, Dict, Any, List, Optional
@@ -355,6 +356,17 @@ def extract_team_records(config: _ConfigLike, test_mode: bool = False) -> None:
         RuntimeError if espn_api is unavailable in production mode.
     """
     print("Extracting ESPN Data")
+
+    # Older config styles used by tests provide ``output_dir``/``history_file``
+    # instead of ``out_file``/``delimiter``.  Normalize here so the rest of the
+    # function can rely on these attributes regardless of input style.
+    if not getattr(config, "out_file", None):
+        output_dir = getattr(config, "output_dir", "")
+        history_file = getattr(config, "history_file", "league_history.csv")
+        config.out_file = os.path.join(output_dir, history_file)  # type: ignore[attr-defined]
+    if not getattr(config, "delimiter", None):
+        config.delimiter = getattr(config, "format", ",")  # type: ignore[attr-defined]
+
     if test_mode:
         print(f"Writing offline fixture to {config.out_file}")
         _write_offline_fixture(config)

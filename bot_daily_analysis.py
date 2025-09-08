@@ -128,7 +128,20 @@ def export_standings(league: League, out_dir: str) -> pd.DataFrame:
 
 
 def export_matchups(league: League, out_dir: str, scoring_period: Optional[int]) -> pd.DataFrame:
-    box_scores = league.box_scores(scoring_period) if scoring_period else league.box_scores()
+    """Export matchup information for a given week.
+
+    When ``scoring_period`` is ``None`` the ``espn_api`` library returns box
+    scores for the league's current week, but the ``BoxScore`` objects don't
+    expose the week number.  Previously we attempted to read a
+    ``matchupPeriodId`` attribute, which doesn't exist and resulted in ``None``
+    values for the ``week`` column in the exported CSV.  To ensure the week is
+    always populated we explicitly determine the week using the ``League``
+    object's ``current_week`` attribute when a specific ``scoring_period`` isn't
+    provided.
+    """
+
+    week = scoring_period or getattr(league, "current_week", None)
+    box_scores = league.box_scores(week)
     rows = []
     for bs in box_scores:
         home_proj = getattr(bs, "home_projected", None)
@@ -138,7 +151,7 @@ def export_matchups(league: League, out_dir: str, scoring_period: Optional[int])
         if not away_proj:
             away_proj = sum(float(getattr(p, "projected_points", 0) or 0) for p in (bs.away_lineup or []))
         rows.append({
-            "week": scoring_period if scoring_period else getattr(bs, "matchupPeriodId", None),
+            "week": week,
             "home_team_id": bs.home_team.team_id,
             "home_team_name": bs.home_team.team_name,
             "away_team_id": bs.away_team.team_id,
@@ -149,7 +162,7 @@ def export_matchups(league: League, out_dir: str, scoring_period: Optional[int])
             "projected_away": float(away_proj),
         })
     df = pd.DataFrame(rows)
-    df.to_csv(os.path.join(out_dir, f"matchups_week_{scoring_period or 'current'}.csv"), index=False)
+    df.to_csv(os.path.join(out_dir, f"matchups_week_{week}.csv"), index=False)
     return df
 
 
@@ -179,19 +192,32 @@ def _player_to_row(p, team_id=None, week=None) -> Dict[str, Any]:
 
 
 def export_rosters(league: League, out_dir: str, scoring_period: Optional[int]) -> pd.DataFrame:
+    """Export roster information for each team for a specific week.
+
+    Similar to :func:`export_matchups`, we need the correct week value even
+    when ``scoring_period`` is ``None``.  The previous implementation attempted
+    to read a non-existent ``matchupPeriodId`` attribute from ``BoxScore``
+    objects which resulted in ``None`` entries.  Instead we explicitly track the
+    week and use it for every exported row.
+    """
+
+    week = scoring_period or getattr(league, "current_week", None)
     rows = []
-    bs_list = league.box_scores(scoring_period) if scoring_period else league.box_scores()
+    bs_list = league.box_scores(week)
     for team in league.teams:
-        bs_for_team = next((bs for bs in bs_list if bs.home_team.team_id == team.team_id or bs.away_team.team_id == team.team_id), None)
+        bs_for_team = next(
+            (bs for bs in bs_list if bs.home_team.team_id == team.team_id or bs.away_team.team_id == team.team_id),
+            None,
+        )
         if bs_for_team:
             lineup = bs_for_team.home_lineup if bs_for_team.home_team.team_id == team.team_id else bs_for_team.away_lineup
             for p in (lineup or []):
-                rows.append(_player_to_row(p, team_id=team.team_id, week=scoring_period or getattr(bs_for_team, "matchupPeriodId", None)))
+                rows.append(_player_to_row(p, team_id=team.team_id, week=week))
         else:
             for p in team.roster:
-                rows.append(_player_to_row(p, team_id=team.team_id, week=scoring_period))
+                rows.append(_player_to_row(p, team_id=team.team_id, week=week))
     df = pd.DataFrame(rows)
-    df.to_csv(os.path.join(out_dir, f"rosters_week_{scoring_period or 'current'}.csv"), index=False)
+    df.to_csv(os.path.join(out_dir, f"rosters_week_{week}.csv"), index=False)
     return df
 
 
@@ -434,7 +460,11 @@ def main() -> None:
     ensure_dir(cfg.out_dir)
 
     league = make_league(cfg)
-    week = cfg.scoring_period  # None means "current" for espn_api
+
+    # Determine the week to operate on.  ``cfg.scoring_period`` allows users to
+    # override the week, otherwise we fall back to the league's current week so
+    # that downstream exports always receive a concrete value.
+    week = cfg.scoring_period or getattr(league, "current_week", None)
 
     # Exports
     df_standings = export_standings(league, cfg.out_dir)
@@ -454,8 +484,8 @@ def main() -> None:
     if cfg.write_xlsx:
         write_workbook(cfg.xlsx_path, {
             "standings": df_standings,
-            f"matchups_wk_{week or 'cur'}": df_matchups,
-            f"rosters_wk_{week or 'cur'}": df_rosters,
+            f"matchups_wk_{week}": df_matchups,
+            f"rosters_wk_{week}": df_rosters,
             "free_agents": df_free,
             "current_rosters": df_current_rosters,
         })

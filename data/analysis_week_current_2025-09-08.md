@@ -3,7 +3,7 @@
 
 ## Free-Agent Targets
 - **Miles Sanders (RB)** — 6.68 proj pts. Top available RB by projections; 2.73% rostered.
-- **Justice Hill (RB)** — 6.65 proj pts. Top available RB by projections; 15.24% rostered.
+- **Justice Hill (RB)** — 6.65 proj pts. Top available RB by projections; 15.23% rostered.
 - **Kenneth Gainwell (RB)** — 6.47 proj pts. Top available RB by projections; 1.94% rostered.
 - **Tyler Allgeier (RB)** — 6.05 proj pts. Top available RB by projections; 38.7% rostered.
 - **Kareem Hunt (RB)** — 5.89 proj pts. Top available RB by projections; 12.3% rostered.

@@ -1,0 +1,170 @@
+week,on_team_id,player_id,name,position,slot,pro_team,proj_points,actual_points,injury_status,percent_owned,percent_started,eligible_slots,team_name,is_starter
+,2,4429795,Jahmyr Gibbs,RB,,DET,0.0,0.0,ACTIVE,99.94,99.81,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Lockout Lockdown,True
+,2,4426348,Jayden Daniels,QB,,WSH,0.0,0.0,ACTIVE,99.87,96.22,"QB,OP,BE,IR",Lockout Lockdown,True
+,2,4430878,Jaxon Smith-Njigba,WR,,SEA,0.0,0.0,ACTIVE,99.04,87.16,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Lockout Lockdown,True
+,2,4432710,TreVeyon Henderson,RB,,NE,0.0,0.0,ACTIVE,96.73,72.6,"Rookie,RB,RB/WR,RB/WR/TE,OP,BE,IR",Lockout Lockdown,True
+,2,4683062,Xavier Worthy,WR,,KC,0.0,0.0,QUESTIONABLE,98.34,87.09,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Lockout Lockdown,True
+,2,4431299,Rome Odunze,WR,,CHI,0.0,0.0,ACTIVE,90.94,21.22,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Lockout Lockdown,True
+,2,-16023,Steelers D/ST,D/ST,,PIT,0.0,0.0,NORMAL,99.4,97.63,"D/ST,BE,IR",Lockout Lockdown,True
+,2,4362887,Justin Fields,QB,,NYJ,0.0,0.0,ACTIVE,70.33,9.81,"QB,OP,BE,IR",Lockout Lockdown,True
+,2,4819231,Kaleb Johnson,RB,,PIT,0.0,0.0,ACTIVE,83.9,4.42,"Rookie,RB,RB/WR,RB/WR/TE,OP,BE,IR",Lockout Lockdown,True
+,2,4385690,Dalton Kincaid,TE,,BUF,0.0,0.0,ACTIVE,70.83,14.91,"WR/TE,TE,RB/WR/TE,OP,BE,IR",Lockout Lockdown,True
+,2,3150744,Chase McLaughlin,K,,TB,0.0,0.0,ACTIVE,98.21,95.25,"K,BE,IR",Lockout Lockdown,True
+,2,4032473,Rashid Shaheed,WR,,NO,0.0,0.0,ACTIVE,69.93,2.98,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Lockout Lockdown,True
+,2,4369863,Cedric Tillman,WR,,CLE,0.0,0.0,ACTIVE,42.57,1.78,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Lockout Lockdown,True
+,2,5081397,Dylan Sampson,RB,,CLE,0.0,0.0,ACTIVE,32.69,1.28,"Rookie,RB,RB/WR,RB/WR/TE,OP,BE,IR",Lockout Lockdown,True
+,5,3117251,Christian McCaffrey,RB,,SF,0.0,0.0,ACTIVE,99.92,94.72,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Enter Touchdown,True
+,5,4047646,A.J. Brown,WR,,PHI,0.0,0.0,ACTIVE,99.87,97.92,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Enter Touchdown,True
+,5,4361307,Trey McBride,TE,,ARI,0.0,0.0,ACTIVE,99.87,98.97,"WR/TE,TE,RB/WR/TE,OP,BE,IR",Enter Touchdown,True
+,5,3052587,Baker Mayfield,QB,,TB,0.0,0.0,ACTIVE,97.57,83.79,"QB,OP,BE,IR",Enter Touchdown,True
+,5,3915416,DJ Moore,WR,,CHI,0.0,0.0,ACTIVE,96.18,63.3,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Enter Touchdown,True
+,5,4241478,DeVonta Smith,WR,,PHI,0.0,0.0,ACTIVE,94.83,53.49,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Enter Touchdown,True
+,5,4426338,Bo Nix,QB,,DEN,0.0,0.0,ACTIVE,94.98,74.03,"QB,OP,BE,IR",Enter Touchdown,True
+,5,4428331,Rashee Rice,WR,,KC,0.0,0.0,SUSPENSION,89.9,6.34,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Enter Touchdown,True
+,5,3051876,Evan Engram,TE,,DEN,0.0,0.0,QUESTIONABLE,91.89,64.49,"WR/TE,TE,RB/WR/TE,OP,BE,IR",Enter Touchdown,True
+,5,4569173,Rhamondre Stevenson,RB,,NE,0.0,0.0,ACTIVE,81.49,7.08,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Enter Touchdown,True
+,5,4429013,Tank Bigsby,RB,,JAX,0.0,0.0,ACTIVE,69.84,2.83,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Enter Touchdown,True
+,5,-16011,Colts D/ST,D/ST,,IND,0.0,0.0,NORMAL,32.19,26.07,"D/ST,BE,IR",Enter Touchdown,True
+,5,2985659,Wil Lutz,K,,DEN,0.0,0.0,ACTIVE,25.78,23.74,"K,BE,IR",Enter Touchdown,True
+,5,-16028,Commanders D/ST,D/ST,,WSH,0.0,0.0,NORMAL,25.43,23.44,"D/ST,BE,IR",Enter Touchdown,True
+,6,4362628,Ja'Marr Chase,WR,,CIN,0.0,0.0,ACTIVE,99.95,99.85,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Prime Tymaz,True
+,6,3915511,Joe Burrow,QB,,CIN,0.0,0.0,ACTIVE,99.84,93.45,"QB,OP,BE,IR",Prime Tymaz,True
+,6,4362238,Chase Brown,RB,,CIN,0.0,0.0,ACTIVE,99.51,96.06,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Prime Tymaz,True
+,6,3045147,James Conner,RB,,ARI,0.0,0.0,ACTIVE,97.57,85.17,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Prime Tymaz,True
+,6,16737,Mike Evans,WR,,TB,0.0,0.0,ACTIVE,98.52,89.6,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Prime Tymaz,True
+,6,3116365,Mark Andrews,TE,,BAL,0.0,0.0,ACTIVE,95.3,77.87,"WR/TE,TE,RB/WR/TE,OP,BE,IR",Prime Tymaz,True
+,6,3042519,Aaron Jones Sr.,RB,,MIN,0.0,0.0,ACTIVE,93.27,43.43,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Prime Tymaz,True
+,6,4432577,C.J. Stroud,QB,,HOU,0.0,0.0,ACTIVE,69.32,13.84,"QB,OP,BE,IR",Prime Tymaz,True
+,6,4373678,Khalil Shakir,WR,,BUF,0.0,0.0,ACTIVE,81.36,6.15,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Prime Tymaz,True
+,6,-16034,Texans D/ST,D/ST,,HOU,0.0,0.0,NORMAL,94.98,84.28,"D/ST,BE,IR",Prime Tymaz,True
+,6,3121023,Dallas Goedert,TE,,PHI,0.0,0.0,ACTIVE,74.68,20.55,"WR/TE,TE,RB/WR/TE,OP,BE,IR",Prime Tymaz,True
+,6,17427,Cairo Santos,K,,CHI,0.0,0.0,ACTIVE,47.4,42.56,"K,BE,IR",Prime Tymaz,True
+,6,4430034,Xavier Legette,WR,,CAR,0.0,0.0,ACTIVE,56.29,1.68,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Prime Tymaz,True
+,6,4241457,Najee Harris,RB,,LAC,0.0,0.0,ACTIVE,45.69,1.11,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Prime Tymaz,True
+,8,4890973,Ashton Jeanty,RB,,LV,0.0,0.0,ACTIVE,99.87,98.92,"Rookie,RB,RB/WR,RB/WR/TE,OP,BE,IR",Team Newbie,True
+,8,4432773,Brian Thomas Jr.,WR,,JAX,0.0,0.0,ACTIVE,99.79,97.24,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Team Newbie,True
+,8,3139477,Patrick Mahomes,QB,,KC,0.0,0.0,ACTIVE,98.53,87.08,"QB,OP,BE,IR",Team Newbie,True
+,8,4569618,Garrett Wilson,WR,,NYJ,0.0,0.0,ACTIVE,98.21,70.81,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Team Newbie,True
+,8,3123076,David Njoku,TE,,CLE,0.0,0.0,ACTIVE,95.32,79.38,"WR/TE,TE,RB/WR/TE,OP,BE,IR",Team Newbie,True
+,8,4427366,Breece Hall,RB,,NYJ,0.0,0.0,ACTIVE,96.52,63.88,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Team Newbie,True
+,8,4701936,Matthew Golden,WR,,GB,0.0,0.0,ACTIVE,90.6,19.11,"Rookie,RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Team Newbie,True
+,8,4689936,Jake Bates,K,,DET,0.0,0.0,ACTIVE,99.16,96.03,"K,BE,IR",Team Newbie,True
+,8,4360569,Jordan Mason,RB,,MIN,0.0,0.0,ACTIVE,73.98,2.6,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Team Newbie,True
+,8,3886598,Jauan Jennings,WR,,SF,0.0,0.0,QUESTIONABLE,81.21,7.77,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Team Newbie,True
+,8,4433970,J.J. McCarthy,QB,,MIN,0.0,0.0,ACTIVE,66.47,8.76,"QB,OP,BE,IR",Team Newbie,True
+,8,4362249,Jayden Reed,WR,,GB,0.0,0.0,ACTIVE,70.8,1.81,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Team Newbie,True
+,8,-16027,Buccaneers D/ST,D/ST,,TB,0.0,0.0,NORMAL,18.92,13.22,"D/ST,BE,IR",Team Newbie,True
+,8,4429275,Trey Benson,RB,,ARI,0.0,0.0,ACTIVE,51.39,0.84,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Team Newbie,True
+,9,3918298,Josh Allen,QB,,BUF,0.0,0.0,ACTIVE,99.93,96.86,"QB,OP,BE,IR",Shelley Duvall,True
+,9,4426502,Drake London,WR,,ATL,0.0,0.0,QUESTIONABLE,99.68,95.76,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Shelley Duvall,True
+,9,4430737,Kyren Williams,RB,,LAR,0.0,0.0,ACTIVE,99.43,93.59,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Shelley Duvall,True
+,9,3116406,Tyreek Hill,WR,,MIA,0.0,0.0,ACTIVE,99.4,89.68,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Shelley Duvall,True
+,9,4259545,D'Andre Swift,RB,,CHI,0.0,0.0,ACTIVE,95.71,61.81,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Shelley Duvall,True
+,9,4241463,Jerry Jeudy,WR,,CLE,0.0,0.0,ACTIVE,94.19,57.01,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Shelley Duvall,True
+,9,3916433,Jakobi Meyers,WR,,LV,0.0,0.0,ACTIVE,89.71,19.41,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Shelley Duvall,True
+,9,3068267,Austin Ekeler,RB,,WSH,0.0,0.0,ACTIVE,85.1,10.65,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Shelley Duvall,True
+,9,4431459,Tyler Warren,TE,,IND,0.0,0.0,ACTIVE,89.01,52.15,"Rookie,WR/TE,TE,RB/WR/TE,OP,BE,IR",Shelley Duvall,True
+,9,2976212,Stefon Diggs,WR,,NE,0.0,0.0,ACTIVE,89.41,14.46,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Shelley Duvall,True
+,9,4361579,Javonte Williams,RB,,DAL,0.0,0.0,ACTIVE,82.22,5.23,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Shelley Duvall,True
+,9,-16026,Seahawks D/ST,D/ST,,SEA,0.0,0.0,NORMAL,76.7,66.1,"D/ST,BE,IR",Shelley Duvall,True
+,9,17372,Chris Boswell,K,,PIT,0.0,0.0,ACTIVE,83.53,77.9,"K,BE,IR",Shelley Duvall,True
+,9,4241479,Tua Tagovailoa,QB,,MIA,0.0,0.0,ACTIVE,31.61,4.14,"QB,OP,BE,IR",Shelley Duvall,True
+,13,4262921,Justin Jefferson,WR,,MIN,0.0,0.0,ACTIVE,99.94,99.35,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Vita Vea Vegamine,True
+,13,3916387,Lamar Jackson,QB,,BAL,0.0,0.0,ACTIVE,99.91,97.33,"QB,OP,BE,IR",Vita Vea Vegamine,True
+,13,4239993,Tee Higgins,WR,,CIN,0.0,0.0,ACTIVE,99.72,94.7,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Vita Vea Vegamine,True
+,13,4241416,Chuba Hubbard,RB,,CAR,0.0,0.0,ACTIVE,98.23,87.38,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Vita Vea Vegamine,True
+,13,4430027,Sam LaPorta,TE,,DET,0.0,0.0,ACTIVE,99.42,93.56,"WR/TE,TE,RB/WR/TE,OP,BE,IR",Vita Vea Vegamine,True
+,13,4035538,David Montgomery,RB,,DET,0.0,0.0,ACTIVE,95.28,54.73,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Vita Vea Vegamine,True
+,13,4361529,Isiah Pacheco,RB,,KC,0.0,0.0,ACTIVE,94.14,48.16,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Vita Vea Vegamine,True
+,13,4361370,Chris Olave,WR,,NO,0.0,0.0,ACTIVE,88.77,14.61,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Vita Vea Vegamine,True
+,13,-16007,Broncos D/ST,D/ST,,DEN,0.0,0.0,NORMAL,99.33,96.54,"D/ST,BE,IR",Vita Vea Vegamine,True
+,13,3046779,Jared Goff,QB,,DET,0.0,0.0,ACTIVE,68.32,13.2,"QB,OP,BE,IR",Vita Vea Vegamine,True
+,13,4688813,Josh Downs,WR,,IND,0.0,0.0,ACTIVE,66.91,2.22,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Vita Vea Vegamine,True
+,13,3055899,Harrison Butker,K,,KC,0.0,0.0,ACTIVE,81.28,75.27,"K,BE,IR",Vita Vea Vegamine,True
+,13,4697815,Rachaad White,RB,,TB,0.0,0.0,ACTIVE,54.88,1.2,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Vita Vea Vegamine,True
+,13,4360248,Kyle Pitts Sr.,TE,,ATL,0.0,0.0,ACTIVE,64.98,13.73,"WR/TE,TE,RB/WR/TE,OP,BE,IR",Vita Vea Vegamine,True
+,16,4241389,CeeDee Lamb,WR,,DAL,0.0,0.0,ACTIVE,99.93,99.73,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Ceedee Ball Catch D'Ball,True
+,16,4047365,Josh Jacobs,RB,,GB,0.0,0.0,ACTIVE,99.86,97.13,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Ceedee Ball Catch D'Ball,True
+,16,4432665,Brock Bowers,TE,,LV,0.0,0.0,QUESTIONABLE,99.91,99.62,"WR/TE,TE,RB/WR/TE,OP,BE,IR",Ceedee Ball Catch D'Ball,True
+,16,4685382,Omarion Hampton,RB,,LAC,0.0,0.0,ACTIVE,98.23,85.24,"Rookie,RB,RB/WR,RB/WR/TE,OP,BE,IR",Ceedee Ball Catch D'Ball,True
+,16,4685472,Tetairoa McMillan,WR,,CAR,0.0,0.0,ACTIVE,94.39,49.32,"Rookie,RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Ceedee Ball Catch D'Ball,True
+,16,4426388,Jameson Williams,WR,,DET,0.0,0.0,ACTIVE,93.66,40.63,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Ceedee Ball Catch D'Ball,True
+,16,3917315,Kyler Murray,QB,,ARI,0.0,0.0,ACTIVE,92.11,61.36,"QB,OP,BE,IR",Ceedee Ball Catch D'Ball,True
+,16,4035687,Michael Pittman Jr.,WR,,IND,0.0,0.0,ACTIVE,85.81,9.79,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Ceedee Ball Catch D'Ball,True
+,16,4575131,Jacory Croskey-Merritt,RB,,WSH,0.0,0.0,ACTIVE,82.34,6.86,"Rookie,RB,RB/WR,RB/WR/TE,OP,BE,IR",Ceedee Ball Catch D'Ball,True
+,16,4429205,Jordan Addison,WR,,MIN,0.0,0.0,SUSPENSION,80.2,0.44,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Ceedee Ball Catch D'Ball,True
+,16,3116385,Joe Mixon,RB,,HOU,0.0,0.0,OUT,70.12,3.66,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Ceedee Ball Catch D'Ball,True
+,16,3128720,Nick Chubb,RB,,HOU,0.0,0.0,ACTIVE,75.22,7.21,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Ceedee Ball Catch D'Ball,True
+,16,4249087,Matt Gay,K,,WSH,0.0,0.0,ACTIVE,42.44,37.07,"K,BE,IR",Ceedee Ball Catch D'Ball,True
+,16,-16022,Cardinals D/ST,D/ST,,ARI,0.0,0.0,NORMAL,61.04,58.0,"D/ST,BE,IR",Ceedee Ball Catch D'Ball,True
+,16,4241474,Brian Robinson Jr.,RB,,SF,0.0,0.0,ACTIVE,53.02,1.66,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Ceedee Ball Catch D'Ball,True
+,19,4595348,Malik Nabers,WR,,NYG,0.0,0.0,ACTIVE,99.9,98.76,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Annexation of Puerto Rico,True
+,19,4258173,Nico Collins,WR,,HOU,0.0,0.0,ACTIVE,99.88,98.78,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Annexation of Puerto Rico,True
+,19,4379399,James Cook,RB,,BUF,0.0,0.0,ACTIVE,99.5,90.98,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Annexation of Puerto Rico,True
+,19,3040151,George Kittle,TE,,SF,0.0,0.0,QUESTIONABLE,99.87,98.4,"WR/TE,TE,RB/WR/TE,OP,BE,IR",Annexation of Puerto Rico,True
+,19,3128429,Courtland Sutton,WR,,DEN,0.0,0.0,ACTIVE,95.37,60.83,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Annexation of Puerto Rico,True
+,19,4568490,RJ Harvey,RB,,DEN,0.0,0.0,ACTIVE,91.59,31.74,"Rookie,RB,RB/WR,RB/WR/TE,OP,BE,IR",Annexation of Puerto Rico,True
+,19,4360516,Tyrone Tracy Jr.,RB,,NYG,0.0,0.0,ACTIVE,89.75,25.62,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Annexation of Puerto Rico,True
+,19,4428209,Ricky Pearsall,WR,,SF,0.0,0.0,ACTIVE,87.28,20.93,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Annexation of Puerto Rico,True
+,19,3953687,Brandon Aubrey,K,,DAL,0.0,0.0,ACTIVE,98.09,94.47,"K,BE,IR",Annexation of Puerto Rico,True
+,19,4431452,Drake Maye,QB,,NE,0.0,0.0,ACTIVE,73.78,20.98,"QB,OP,BE,IR",Annexation of Puerto Rico,True
+,19,4242355,Jake Ferguson,TE,,DAL,0.0,0.0,ACTIVE,67.0,15.63,"WR/TE,TE,RB/WR/TE,OP,BE,IR",Annexation of Puerto Rico,True
+,19,4882093,Bhayshul Tuten,RB,,JAX,0.0,0.0,ACTIVE,42.19,0.35,"Rookie,RB,RB/WR,RB/WR/TE,OP,BE,IR",Annexation of Puerto Rico,True
+,19,-16021,Eagles D/ST,D/ST,,PHI,0.0,0.0,NORMAL,84.49,75.51,"D/ST,BE,IR",Annexation of Puerto Rico,True
+,19,4711533,Ollie Gordon II,RB,,MIA,0.0,0.0,ACTIVE,43.48,1.06,"Rookie,RB,RB/WR,RB/WR/TE,OP,BE,IR",Annexation of Puerto Rico,True
+,20,4426515,Puka Nacua,WR,,LAR,0.0,0.0,ACTIVE,99.91,99.01,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Dawg Pound,True
+,20,4242335,Jonathan Taylor,RB,,IND,0.0,0.0,ACTIVE,99.85,98.87,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Dawg Pound,True
+,20,16800,Davante Adams,WR,,LAR,0.0,0.0,ACTIVE,99.25,87.81,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Dawg Pound,True
+,20,4361741,Brock Purdy,QB,,SF,0.0,0.0,ACTIVE,90.81,42.72,"QB,OP,BE,IR",Dawg Pound,True
+,20,4429615,Zay Flowers,WR,,BAL,0.0,0.0,ACTIVE,96.89,70.63,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Dawg Pound,True
+,20,4372016,Jaylen Waddle,WR,,MIA,0.0,0.0,ACTIVE,93.91,40.77,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Dawg Pound,True
+,20,2977187,Cooper Kupp,WR,,SEA,0.0,0.0,ACTIVE,89.89,19.22,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Dawg Pound,True
+,20,4241985,J.K. Dobbins,RB,,DEN,0.0,0.0,ACTIVE,85.41,10.02,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Dawg Pound,True
+,20,4723086,Colston Loveland,TE,,CHI,0.0,0.0,ACTIVE,81.12,27.72,"Rookie,WR/TE,TE,RB/WR/TE,OP,BE,IR",Dawg Pound,True
+,20,4362081,Cameron Dicker,K,,LAC,0.0,0.0,ACTIVE,97.68,92.84,"K,BE,IR",Dawg Pound,True
+,20,-16008,Lions D/ST,D/ST,,DET,0.0,0.0,NORMAL,82.0,70.34,"D/ST,BE,IR",Dawg Pound,True
+,20,4239996,Travis Etienne Jr.,RB,,JAX,0.0,0.0,ACTIVE,79.43,7.24,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Dawg Pound,True
+,20,3046439,Hunter Henry,TE,,NE,0.0,0.0,ACTIVE,43.46,6.67,"WR/TE,TE,RB/WR/TE,OP,BE,IR",Dawg Pound,True
+,20,4685702,Quinshon Judkins,RB,,CLE,0.0,0.0,OUT,55.57,1.43,"Rookie,RB,RB/WR,RB/WR/TE,OP,BE,IR",Dawg Pound,True
+,21,4430807,Bijan Robinson,RB,,ATL,0.0,0.0,ACTIVE,99.94,99.81,"RB,RB/WR,RB/WR/TE,OP,BE,IR",OJ's Parole Board,True
+,21,4596448,Bucky Irving,RB,,TB,0.0,0.0,ACTIVE,99.73,97.07,"RB,RB/WR,RB/WR/TE,OP,BE,IR",OJ's Parole Board,True
+,21,4612826,Ladd McConkey,WR,,LAC,0.0,0.0,ACTIVE,99.42,91.93,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",OJ's Parole Board,True
+,21,4432708,Marvin Harrison Jr.,WR,,ARI,0.0,0.0,ACTIVE,98.05,79.66,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",OJ's Parole Board,True
+,21,4567048,Kenneth Walker III,RB,,SEA,0.0,0.0,ACTIVE,97.89,85.2,"RB,RB/WR,RB/WR/TE,OP,BE,IR",OJ's Parole Board,True
+,21,4036133,T.J. Hockenson,TE,,MIN,0.0,0.0,ACTIVE,97.81,88.72,"WR/TE,TE,RB/WR/TE,OP,BE,IR",OJ's Parole Board,True
+,21,4567750,Emeka Egbuka,WR,,TB,0.0,0.0,ACTIVE,90.11,36.78,"Rookie,RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",OJ's Parole Board,True
+,21,2577417,Dak Prescott,QB,,DAL,0.0,0.0,ACTIVE,83.1,30.53,"QB,OP,BE,IR",OJ's Parole Board,True
+,21,4036378,Jordan Love,QB,,GB,0.0,0.0,ACTIVE,67.63,9.84,"QB,OP,BE,IR",OJ's Parole Board,True
+,21,15818,Keenan Allen,WR,,LAC,0.0,0.0,ACTIVE,75.62,4.66,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",OJ's Parole Board,True
+,21,-16016,Vikings D/ST,D/ST,,MIN,0.0,0.0,NORMAL,94.76,87.94,"D/ST,BE,IR",OJ's Parole Board,True
+,21,3050478,Jake Elliott,K,,PHI,0.0,0.0,ACTIVE,90.31,85.39,"K,BE,IR",OJ's Parole Board,True
+,21,4372019,Jerome Ford,RB,,CLE,0.0,0.0,ACTIVE,75.86,28.87,"RB,RB/WR,RB/WR/TE,OP,BE,IR",OJ's Parole Board,True
+,21,-16009,Packers D/ST,D/ST,,GB,0.0,0.0,NORMAL,37.48,21.4,"D/ST,BE,IR",OJ's Parole Board,True
+,22,4374302,Amon-Ra St. Brown,WR,,DET,0.0,0.0,ACTIVE,99.93,99.48,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Cookin with Bijan,True
+,22,4429160,De'Von Achane,RB,,MIA,0.0,0.0,ACTIVE,99.8,96.96,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Cookin with Bijan,True
+,22,3054850,Alvin Kamara,RB,,NO,0.0,0.0,ACTIVE,98.96,91.33,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Cookin with Bijan,True
+,22,3121422,Terry McLaurin,WR,,WSH,0.0,0.0,ACTIVE,99.09,84.1,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Cookin with Bijan,True
+,22,3925357,Calvin Ridley,WR,,TEN,0.0,0.0,ACTIVE,93.78,34.16,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Cookin with Bijan,True
+,22,4426354,George Pickens,WR,,DAL,0.0,0.0,ACTIVE,94.19,44.77,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Cookin with Bijan,True
+,22,4569987,Jaylen Warren,RB,,PIT,0.0,0.0,ACTIVE,88.98,27.1,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Cookin with Bijan,True
+,22,4038941,Justin Herbert,QB,,LAC,0.0,0.0,ACTIVE,87.53,33.64,"QB,OP,BE,IR",Cookin with Bijan,True
+,22,4696981,Cam Skattebo,RB,,NYG,0.0,0.0,ACTIVE,81.41,4.13,"Rookie,RB,RB/WR,RB/WR/TE,OP,BE,IR",Cookin with Bijan,True
+,22,4572680,Tucker Kraft,TE,,GB,0.0,0.0,ACTIVE,84.25,36.31,"WR/TE,TE,RB/WR/TE,OP,BE,IR",Cookin with Bijan,True
+,22,4635008,Keon Coleman,WR,,BUF,0.0,0.0,ACTIVE,81.24,5.14,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Cookin with Bijan,True
+,22,-16002,Bills D/ST,D/ST,,BUF,0.0,0.0,NORMAL,52.37,33.71,"D/ST,BE,IR",Cookin with Bijan,True
+,22,4697745,Tyler Loop,K,,BAL,0.0,0.0,ACTIVE,56.78,51.83,"Rookie,K,BE,IR",Cookin with Bijan,True
+,22,4360310,Trevor Lawrence,QB,,JAX,0.0,0.0,ACTIVE,39.33,13.39,"QB,OP,BE,IR",Cookin with Bijan,True
+,23,3929630,Saquon Barkley,RB,,PHI,0.0,0.0,ACTIVE,99.95,99.89,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Never Ever Getting Dak Together,True
+,23,3043078,Derrick Henry,RB,,BAL,0.0,0.0,ACTIVE,99.92,98.99,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Never Ever Getting Dak Together,True
+,23,4040715,Jalen Hurts,QB,,PHI,0.0,0.0,ACTIVE,99.88,97.41,"QB,OP,BE,IR",Never Ever Getting Dak Together,True
+,23,4047650,DK Metcalf,WR,,PIT,0.0,0.0,ACTIVE,98.54,76.34,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Never Ever Getting Dak Together,True
+,23,15847,Travis Kelce,TE,,KC,0.0,0.0,ACTIVE,97.93,89.32,"WR/TE,TE,RB/WR/TE,OP,BE,IR",Never Ever Getting Dak Together,True
+,23,4685415,Travis Hunter,WR,,JAX,0.0,0.0,ACTIVE,94.81,34.24,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR,CB,DB,DP",Never Ever Getting Dak Together,True
+,23,3916148,Tony Pollard,RB,,TEN,0.0,0.0,ACTIVE,92.99,44.7,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Never Ever Getting Dak Together,True
+,23,3126486,Deebo Samuel,WR,,WSH,0.0,0.0,ACTIVE,87.66,14.71,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Never Ever Getting Dak Together,True
+,23,3116165,Chris Godwin Jr.,WR,,TB,0.0,0.0,OUT,80.86,0.72,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Never Ever Getting Dak Together,True
+,23,-16033,Ravens D/ST,D/ST,,BAL,0.0,0.0,NORMAL,91.04,67.45,"D/ST,BE,IR",Never Ever Getting Dak Together,True
+,23,4431611,Caleb Williams,QB,,CHI,0.0,0.0,ACTIVE,75.53,15.85,"QB,OP,BE,IR",Never Ever Getting Dak Together,True
+,23,4877706,Jayden Higgins,WR,,HOU,0.0,0.0,ACTIVE,57.48,1.33,"Rookie,RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Never Ever Getting Dak Together,True
+,23,4426385,Zach Charbonnet,RB,,SEA,0.0,0.0,ACTIVE,70.71,1.92,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Never Ever Getting Dak Together,True
+,23,4686361,Cam Little,K,,JAX,0.0,0.0,ACTIVE,54.49,50.46,"K,BE,IR",Never Ever Getting Dak Together,True

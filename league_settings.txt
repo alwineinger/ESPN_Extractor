@@ -1,0 +1,20 @@
+# League-specific settings accessible via espn_api.football.Settings
+# Lists attributes provided by the API's Settings object
+reg_season_count              - Number of matchup periods in the regular season
+matchup_periods               - Details of each matchup period
+veto_votes_required           - Votes required to veto a trade
+team_count                    - Number of teams in the league
+playoff_team_count            - Number of teams that make the playoffs
+keeper_count                  - Number of players each team may keep
+trade_deadline                - Timestamp for the trade deadline
+division_map                  - Mapping of division IDs to names
+name                          - Name of the league
+tie_rule                      - Rule used to break ties in regular season matchups
+playoff_tie_rule              - Rule used to break ties in playoff matchups
+playoff_matchup_period_length - Number of weeks per playoff matchup
+playoff_seed_tie_rule         - Rule used for seeding tiebreakers
+scoring_type                  - Scoring system used by the league
+faab                          - Whether the league uses a free-agent acquisition budget
+acquisition_budget            - Size of the free-agent acquisition budget
+position_slot_counts          - Lineup slot counts for each position
+scoring_format                - Scoring settings for each stat category

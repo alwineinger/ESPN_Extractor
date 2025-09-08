@@ -195,6 +195,27 @@ def export_rosters(league: League, out_dir: str, scoring_period: Optional[int]) 
     return df
 
 
+def export_current_team_rosters(league: League, out_dir: str) -> pd.DataFrame:
+    """Export the current roster (starters and bench) for every team.
+
+    This uses ``team.roster`` so that the latest lineup information is
+    retrieved regardless of matchup box score availability.
+    """
+    rows: List[Dict[str, Any]] = []
+    for team in league.teams:
+        for player in team.roster:
+            rows.append(
+                _player_to_row(player, team_id=team.team_id, week=None)
+                | {
+                    "team_name": team.team_name,
+                    "is_starter": getattr(player, "slot_position", "") not in ("BE", "IR"),
+                }
+            )
+    df = pd.DataFrame(rows)
+    df.to_csv(os.path.join(out_dir, "current_team_rosters.csv"), index=False)
+    return df
+
+
 def export_free_agents(league: League, out_dir: str, pool_size: int, positions: List[str]) -> pd.DataFrame:
     rows = []
     for pos in positions:
@@ -419,6 +440,7 @@ def main() -> None:
     df_standings = export_standings(league, cfg.out_dir)
     df_matchups = export_matchups(league, cfg.out_dir, week)
     df_rosters = export_rosters(league, cfg.out_dir, week)
+    df_current_rosters = export_current_team_rosters(league, cfg.out_dir)
     df_free = export_free_agents(league, cfg.out_dir, cfg.free_agent_pool_size, cfg.positions)
 
     # Advice
@@ -434,7 +456,8 @@ def main() -> None:
             "standings": df_standings,
             f"matchups_wk_{week or 'cur'}": df_matchups,
             f"rosters_wk_{week or 'cur'}": df_rosters,
-            "free_agents": df_free
+            "free_agents": df_free,
+            "current_rosters": df_current_rosters,
         })
 
     print("Done.")

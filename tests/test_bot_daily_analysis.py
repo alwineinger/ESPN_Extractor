@@ -1,10 +1,16 @@
+import sys
+from pathlib import Path
+from datetime import datetime, timedelta
+from dateutil import tz
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+
 from bot_daily_analysis import (
     export_current_team_rosters,
     export_free_agents,
     export_upcoming_pro_schedule,
+    export_league_settings,
 )
-from datetime import datetime, timedelta
-from dateutil import tz
 
 
 class Player:
@@ -105,3 +111,22 @@ def test_export_upcoming_pro_schedule_filters_and_dedupes(tmp_path):
     assert df["home_team_id"].tolist() == [3]
     assert df["home_team_abbrev"].tolist() == ["CHI"]
     assert df["away_team_abbrev"].tolist() == ["CIN"]
+
+
+def test_export_league_settings_writes_key_value(tmp_path):
+    class SettingsStub:
+        def __init__(self):
+            self.team_count = 8
+            self.name = "Test League"
+
+    class LeagueWithSettings(LeagueStub):
+        def __init__(self):
+            super().__init__()
+            self.settings = SettingsStub()
+
+    league = LeagueWithSettings()
+    df = export_league_settings(league, tmp_path)
+    assert {"team_count", "name"} <= set(df["setting"])
+    out_file = tmp_path / "league_settings.txt"
+    assert out_file.exists()
+

@@ -103,3 +103,5 @@ def test_export_upcoming_pro_schedule_filters_and_dedupes(tmp_path):
     df = export_upcoming_pro_schedule(league, tmp_path)
     assert df["game_id"].tolist() == [2]
     assert df["home_team_id"].tolist() == [3]
+    assert df["home_team_abbrev"].tolist() == ["CHI"]
+    assert df["away_team_abbrev"].tolist() == ["CIN"]

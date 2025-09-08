@@ -12,7 +12,7 @@ try:
 except ModuleNotFoundError:
     import tomli as tomllib
 
-from espn_api.football import League
+from espn_api.football import League, constant
 
 
 # --------------------------
@@ -311,6 +311,8 @@ def export_upcoming_pro_schedule(league: League, out_dir: str) -> pd.DataFrame:
                             "game_date": game_dt.strftime("%Y-%m-%d"),
                             "home_team_id": g.get("homeProTeamId"),
                             "away_team_id": g.get("awayProTeamId"),
+                            "home_team_abbrev": constant.PRO_TEAM_MAP.get(g.get("homeProTeamId")),
+                            "away_team_abbrev": constant.PRO_TEAM_MAP.get(g.get("awayProTeamId")),
                         }
                     )
                     seen.add(game_id)

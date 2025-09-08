@@ -1,4 +1,10 @@
-from bot_daily_analysis import export_current_team_rosters, export_free_agents
+from bot_daily_analysis import (
+    export_current_team_rosters,
+    export_free_agents,
+    export_upcoming_pro_schedule,
+)
+from datetime import datetime, timedelta
+from dateutil import tz
 
 
 class Player:
@@ -61,6 +67,20 @@ class LeagueStub:
     def free_agents(self, size: int, position: str):
         return self._fa.get(position, [])
 
+    def _get_all_pro_schedule(self):
+        now = datetime.now(tz.gettz("America/New_York"))
+        past = int((now - timedelta(days=1)).timestamp() * 1000)
+        future = int((now + timedelta(days=1)).timestamp() * 1000)
+        return {
+            1: {
+                "1": [
+                    {"gameId": 1, "date": past, "homeProTeamId": 1, "awayProTeamId": 2},
+                    {"gameId": 2, "date": future, "homeProTeamId": 3, "awayProTeamId": 4},
+                ]
+            },
+            2: {"1": [{"gameId": 2, "date": future, "homeProTeamId": 3, "awayProTeamId": 4}]},
+        }
+
 
 def test_export_current_team_rosters_includes_bench_and_week(tmp_path):
     league = LeagueStub()
@@ -76,3 +96,13 @@ def test_export_free_agents_has_week(tmp_path):
     league = LeagueStub()
     df = export_free_agents(league, tmp_path, pool_size=5, positions=["QB", "RB"])
     assert set(df["week"]) == {league.current_week}
+
+
+def test_export_upcoming_pro_schedule_filters_and_dedupes(tmp_path):
+    league = LeagueStub()
+    df = export_upcoming_pro_schedule(league, tmp_path)
+    assert df["game_id"].tolist() == [2]
+    assert df["home_team_id"].tolist() == [3]
+    assert df["away_team_id"].tolist() == [4]
+    assert df["home_team_name"].tolist() == ["CHI"]
+    assert df["away_team_name"].tolist() == ["CIN"]

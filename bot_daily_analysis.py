@@ -322,6 +322,33 @@ def export_upcoming_pro_schedule(league: League, out_dir: str) -> pd.DataFrame:
     return df
 
 
+def export_league_settings(league: League, out_dir: str) -> pd.DataFrame:
+    """Export the league's Settings object as key/value pairs.
+
+    Parameters
+    ----------
+    league : League
+        An ``espn_api`` :class:`League` instance.
+    out_dir : str
+        Directory where ``league_settings.txt`` will be written.
+
+    Returns
+    -------
+    pandas.DataFrame
+        Two-column dataframe with ``setting`` and ``value`` entries.
+    """
+
+    settings = getattr(league, "settings", None)
+    rows: List[Dict[str, Any]] = []
+    if settings is not None:
+        for key, value in vars(settings).items():
+            rows.append({"setting": key, "value": value})
+
+    df = pd.DataFrame(rows)
+    df.to_csv(os.path.join(out_dir, "league_settings.txt"), index=False)
+    return df
+
+
 # --------------------------
 # Analysis (Start/Sit & Trades)
 # --------------------------
@@ -539,6 +566,7 @@ def main() -> None:
     df_current_rosters = export_current_team_rosters(league, cfg.out_dir)
     df_free = export_free_agents(league, cfg.out_dir, cfg.free_agent_pool_size, cfg.positions)
     df_pro = export_upcoming_pro_schedule(league, cfg.out_dir)
+    df_settings = export_league_settings(league, cfg.out_dir)
 
     # Advice
     advice_items: List[Dict[str, Any]] = []
@@ -556,6 +584,7 @@ def main() -> None:
             "free_agents": df_free,
             "current_rosters": df_current_rosters,
             "pro_schedule": df_pro,
+            "league_settings": df_settings,
         })
 
     print("Done.")

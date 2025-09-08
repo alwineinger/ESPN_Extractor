@@ -115,7 +115,7 @@ week,on_team_id,player_id,name,position,slot,pro_team,proj_points,actual_points,
 1,20,4426515,Puka Nacua,WR,WR,LAR,16.77,23.1,ACTIVE,-1,-1,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Dawg Pound,True
 1,20,4242335,Jonathan Taylor,RB,RB,IND,18.03,12.8,ACTIVE,-1,-1,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Dawg Pound,True
 1,20,16800,Davante Adams,WR,WR,LAR,14.45,9.1,ACTIVE,-1,-1,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Dawg Pound,True
-1,20,4361741,Brock Purdy,QB,QB,SF,16.83,16.7,ACTIVE,-1,-1,"QB,OP,BE,IR",Dawg Pound,True
+1,20,4361741,Brock Purdy,QB,QB,SF,16.83,16.7,QUESTIONABLE,-1,-1,"QB,OP,BE,IR",Dawg Pound,True
 1,20,4429615,Zay Flowers,WR,RB/WR/TE,BAL,14.56,28.1,ACTIVE,-1,-1,"RB/WR,WR,WR/TE,RB/WR/TE,OP,BE,IR",Dawg Pound,True
 1,20,4241985,J.K. Dobbins,RB,RB,DEN,10.63,14.8,ACTIVE,-1,-1,"RB,RB/WR,RB/WR/TE,OP,BE,IR",Dawg Pound,True
 1,20,4723086,Colston Loveland,TE,TE,CHI,8.81,0.0,ACTIVE,-1,-1,"Rookie,WR/TE,TE,RB/WR/TE,OP,BE,IR",Dawg Pound,True

@@ -11,7 +11,7 @@
 - **Adam Thielen (WR)** — 11.23 proj pts. Top available WR by projections; 44.28% rostered.
 - **Wan'Dale Robinson (WR)** — 9.7 proj pts. Top available WR by projections; 31.37% rostered.
 - **Rashod Bateman (WR)** — 9.55 proj pts. Top available WR by projections; 32.06% rostered.
-- **Marvin Mims Jr. (WR)** — 8.81 proj pts. Top available WR by projections; 38.58% rostered.
+- **Marvin Mims Jr. (WR)** — 8.81 proj pts. Top available WR by projections; 38.57% rostered.
 
 ## Trade Ideas
 - With **OJ's Parole Board**: Send **Rashee Rice (WR)**, receive **Jerome Ford (RB)** — Surplus at WR for us vs. OJ's Parole Board; they’re deeper at RB.

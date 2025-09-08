@@ -224,17 +224,23 @@ def export_rosters(league: League, out_dir: str, scoring_period: Optional[int]) 
 def export_current_team_rosters(league: League, out_dir: str) -> pd.DataFrame:
     """Export the current roster (starters and bench) for every team.
 
-    This uses ``team.roster`` so that the latest lineup information is
-    retrieved regardless of matchup box score availability.
+    ``League`` does not expose slot information for bench players via
+    ``team.roster`` which previously caused bench players to be missing and the
+    "week" column to remain empty.  To accurately capture the full lineup we use
+    :func:`_lineup_for_team` which pulls the latest box score data and includes
+    both starters and bench players with their associated slot positions.
     """
+
+    week = getattr(league, "current_week", None)
     rows: List[Dict[str, Any]] = []
     for team in league.teams:
-        for player in team.roster:
+        starters, bench = _lineup_for_team(league, team.team_id, None)
+        for player in starters + bench:
             rows.append(
-                _player_to_row(player, team_id=team.team_id, week=None)
+                _player_to_row(player, team_id=team.team_id, week=week)
                 | {
                     "team_name": team.team_name,
-                    "is_starter": getattr(player, "slot_position", "") not in ("BE", "IR"),
+                    "is_starter": player in starters,
                 }
             )
     df = pd.DataFrame(rows)
@@ -243,11 +249,19 @@ def export_current_team_rosters(league: League, out_dir: str) -> pd.DataFrame:
 
 
 def export_free_agents(league: League, out_dir: str, pool_size: int, positions: List[str]) -> pd.DataFrame:
+    """Export information on free agents for the provided positions.
+
+    The previous implementation left the "week" column empty.  We now populate
+    it using the league's current week so downstream consumers know when the
+    snapshot was taken.
+    """
+
+    week = getattr(league, "current_week", None)
     rows = []
     for pos in positions:
         try:
             for p in league.free_agents(size=pool_size, position=pos):
-                rows.append(_player_to_row(p, team_id=None, week=None) | {"fa_position": pos})
+                rows.append(_player_to_row(p, team_id=None, week=week) | {"fa_position": pos})
         except Exception:
             # Some composite slots (e.g., FLEX, OP) may not be directly queryable; ignore gracefully.
             continue

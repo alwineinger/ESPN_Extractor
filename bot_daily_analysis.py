@@ -131,6 +131,12 @@ def export_matchups(league: League, out_dir: str, scoring_period: Optional[int])
     box_scores = league.box_scores(scoring_period) if scoring_period else league.box_scores()
     rows = []
     for bs in box_scores:
+        home_proj = getattr(bs, "home_projected", None)
+        if not home_proj:
+            home_proj = sum(float(getattr(p, "projected_points", 0) or 0) for p in (bs.home_lineup or []))
+        away_proj = getattr(bs, "away_projected", None)
+        if not away_proj:
+            away_proj = sum(float(getattr(p, "projected_points", 0) or 0) for p in (bs.away_lineup or []))
         rows.append({
             "week": scoring_period if scoring_period else getattr(bs, "matchupPeriodId", None),
             "home_team_id": bs.home_team.team_id,
@@ -139,8 +145,8 @@ def export_matchups(league: League, out_dir: str, scoring_period: Optional[int])
             "away_team_name": bs.away_team.team_name,
             "home_score": bs.home_score,
             "away_score": bs.away_score,
-            "projected_home": sum(float(getattr(p, "projected_points", 0) or 0) for p in (bs.home_lineup or [])),
-            "projected_away": sum(float(getattr(p, "projected_points", 0) or 0) for p in (bs.away_lineup or [])),
+            "projected_home": float(home_proj),
+            "projected_away": float(away_proj),
         })
     df = pd.DataFrame(rows)
     df.to_csv(os.path.join(out_dir, f"matchups_week_{scoring_period or 'current'}.csv"), index=False)

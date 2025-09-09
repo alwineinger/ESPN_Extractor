@@ -15,7 +15,6 @@ swid    = "{3CAEAB1D-0B11-472C-B883-E1796D2817B8}"
 
 [output]
 dir = "data"
-write_xlsx = true
 xlsx_path  = "data/league_export.xlsx"
 
 [advice]

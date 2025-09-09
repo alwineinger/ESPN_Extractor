@@ -1,3 +1,4 @@
+import argparse
 import os
 from dataclasses import dataclass
 from datetime import datetime
@@ -28,7 +29,6 @@ class Config:
     espn_s2: Optional[str]
     swid: Optional[str]
     out_dir: str
-    write_xlsx: bool
     xlsx_path: str
     start_sit_threshold: float
     per_pos_thresholds: Dict[str, float]
@@ -73,7 +73,6 @@ def load_config(path: str = "config.toml") -> Config:
         espn_s2=(auth.get("espn_s2") or None),
         swid=(auth.get("swid") or None),
         out_dir=out.get("dir", "espn_extractor/data"),
-        write_xlsx=out.get("write_xlsx", True),
         xlsx_path=out.get("xlsx_path", "espn_extractor/data/league_export.xlsx"),
         start_sit_threshold=_as_float_scalar(advice.get("start_sit_threshold", 1.5), "advice.start_sit_threshold"),
         per_pos_thresholds={str(k): _as_float_scalar(v, f"advice.per_position_thresholds.{k}") for k, v in per_pos.items()},
@@ -162,7 +161,7 @@ def export_matchups(league: League, out_dir: str, scoring_period: Optional[int])
             "projected_away": float(away_proj),
         })
     df = pd.DataFrame(rows)
-    df.to_csv(os.path.join(out_dir, f"matchups_week_{week}.csv"), index=False)
+    df.to_csv(os.path.join(out_dir, "current_matchups.csv"), index=False)
     return df
 
 
@@ -217,7 +216,7 @@ def export_rosters(league: League, out_dir: str, scoring_period: Optional[int]) 
             for p in team.roster:
                 rows.append(_player_to_row(p, team_id=team.team_id, week=week))
     df = pd.DataFrame(rows)
-    df.to_csv(os.path.join(out_dir, f"rosters_week_{week}.csv"), index=False)
+    df.to_csv(os.path.join(out_dir, "current_rosters.csv"), index=False)
     return df
 
 
@@ -548,7 +547,15 @@ def write_workbook(xlsx_path: str, dfs: Dict[str, pd.DataFrame]) -> None:
 # Main
 # --------------------------
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--write-xlsx", action="store_true", help="Generate league_export.xlsx workbook")
+    parser.add_argument("--write-analysis", action="store_true", help="Generate analysis markdown file")
+    return parser.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
     cfg = load_config()
     ensure_dir(cfg.out_dir)
 
@@ -568,24 +575,26 @@ def main() -> None:
     df_pro = export_upcoming_pro_schedule(league, cfg.out_dir)
     df_settings = export_league_settings(league, cfg.out_dir)
 
-    # Advice
-    advice_items: List[Dict[str, Any]] = []
-    advice_items += recommend_start_sit(league, cfg)
-    advice_items += free_agent_targets(league, cfg)
-    advice_items += recommend_trades(league, cfg)
+    if args.write_analysis:
+        advice_items: List[Dict[str, Any]] = []
+        advice_items += recommend_start_sit(league, cfg)
+        advice_items += free_agent_targets(league, cfg)
+        advice_items += recommend_trades(league, cfg)
+        write_advice_markdown(cfg.out_dir, week, advice_items, cfg, league)
 
-    write_advice_markdown(cfg.out_dir, week, advice_items, cfg, league)
-
-    if cfg.write_xlsx:
-        write_workbook(cfg.xlsx_path, {
-            "standings": df_standings,
-            f"matchups_wk_{week}": df_matchups,
-            f"rosters_wk_{week}": df_rosters,
-            "free_agents": df_free,
-            "current_rosters": df_current_rosters,
-            "pro_schedule": df_pro,
-            "league_settings": df_settings,
-        })
+    if args.write_xlsx:
+        write_workbook(
+            cfg.xlsx_path,
+            {
+                "standings": df_standings,
+                "matchups": df_matchups,
+                "rosters": df_rosters,
+                "free_agents": df_free,
+                "current_rosters": df_current_rosters,
+                "pro_schedule": df_pro,
+                "league_settings": df_settings,
+            },
+        )
 
     print("Done.")
 

@@ -10,6 +10,8 @@ from bot_daily_analysis import (
     export_free_agents,
     export_upcoming_pro_schedule,
     export_league_settings,
+    export_matchups,
+    export_rosters,
 )
 
 
@@ -37,11 +39,13 @@ class Team:
 
 
 class BoxScore:
-    def __init__(self, home_team, away_team, home_lineup, away_lineup):
+    def __init__(self, home_team, away_team, home_lineup, away_lineup, home_score=0, away_score=0):
         self.home_team = home_team
         self.away_team = away_team
         self.home_lineup = home_lineup
         self.away_lineup = away_lineup
+        self.home_score = home_score
+        self.away_score = away_score
 
 
 class LeagueStub:
@@ -129,4 +133,14 @@ def test_export_league_settings_writes_key_value(tmp_path):
     assert {"team_count", "name"} <= set(df["setting"])
     out_file = tmp_path / "league_settings.txt"
     assert out_file.exists()
+
+
+def test_matchups_and_rosters_export_current_files(tmp_path):
+    league = LeagueStub()
+    df_m = export_matchups(league, tmp_path, None)
+    df_r = export_rosters(league, tmp_path, None)
+    assert (tmp_path / "current_matchups.csv").exists()
+    assert (tmp_path / "current_rosters.csv").exists()
+    assert set(df_m["week"]) == {league.current_week}
+    assert set(df_r["week"]) == {league.current_week}
 

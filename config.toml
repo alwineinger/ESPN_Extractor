@@ -32,3 +32,11 @@ TE = 1.2
 "D/ST" = 3.0
 K = 3.0
 
+[openai]
+api_key = "YOUR_OPENAI_API_KEY"
+model = "gpt-4o-mini"
+
+[pushover]
+api_token = "YOUR_PUSHOVER_API_TOKEN"
+user_key = "YOUR_PUSHOVER_USER_KEY"
+

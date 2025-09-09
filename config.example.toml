@@ -45,3 +45,13 @@ positions = ["QB", "RB", "WR", "TE", "D/ST", "K", "FLEX", "OP"]
 # - "league" (default): trust ESPN’s projections for your league (respects PPR vs standard automatically).
 # - "league_plus_thresholds": same as league, but only your thresholds change behavior (recommended).
 projection_mode = "league_plus_thresholds"
+
+[openai]
+# OpenAI API credentials and model selection
+api_key = "YOUR_OPENAI_API_KEY"
+model = "gpt-4o-mini"
+
+[pushover]
+# Credentials for Pushover notifications
+api_token = "YOUR_PUSHOVER_API_TOKEN"
+user_key = "YOUR_PUSHOVER_USER_KEY"

@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """Generate daily analysis with OpenAI using ESPN data.
 
-Set the OPENAI_API_KEY environment variable with your OpenAI API key.
-Optionally set OPENAI_MODEL to choose a different model (default: gpt-4o-mini).
+Reads OpenAI and Pushover credentials from ``config.toml``.  Environment
+variables ``OPENAI_API_KEY`` and ``OPENAI_MODEL`` are used as fallbacks.
 """
 import subprocess
 import os
 from pathlib import Path
 from datetime import datetime
 from openai import OpenAI
+import requests
 from bot_daily_analysis import load_config
 
 
@@ -45,12 +46,12 @@ def build_user_content(files: list[Path]) -> str:
     return "\n\n".join(parts)
 
 
-def call_openai(prompt: str, user_content: str) -> str:
+def call_openai(cfg, prompt: str, user_content: str) -> str:
     """Send the prompt and user content to the OpenAI API."""
-    api_key = os.getenv("OPENAI_API_KEY")
+    api_key = cfg.openai_api_key or os.getenv("OPENAI_API_KEY")
     if not api_key:
-        raise RuntimeError("Set the OPENAI_API_KEY environment variable.")
-    model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+        raise RuntimeError("Provide an OpenAI API key in config or environment.")
+    model = cfg.openai_model or os.getenv("OPENAI_MODEL", "gpt-4o-mini")
     client = OpenAI(api_key=api_key)
     response = client.chat.completions.create(
         model=model,
@@ -62,6 +63,27 @@ def call_openai(prompt: str, user_content: str) -> str:
     return response.choices[0].message.content
 
 
+def send_pushover(cfg, message: str) -> None:
+    """Send a Pushover notification if credentials are configured."""
+    token = cfg.pushover_api_token
+    user = cfg.pushover_user_key
+    if not token or not user:
+        return
+    try:
+        requests.post(
+            "https://api.pushover.net/1/messages.json",
+            data={
+                "token": token,
+                "user": user,
+                "title": "Daily AI Summary",
+                "message": message[:1024],
+            },
+            timeout=10,
+        ).raise_for_status()
+    except Exception as exc:  # pragma: no cover - notification failures shouldn't crash
+        print(f"Failed to send Pushover notification: {exc}")
+
+
 def main() -> None:
     run_bot_analysis()
     cfg = load_config()
@@ -70,11 +92,13 @@ def main() -> None:
     prompt = Path("ai_prompt.txt").read_text(encoding="utf-8")
     files = collect_files(out_dir)
     user_content = build_user_content(files)
-    ai_reply = call_openai(prompt, user_content)
+    ai_reply = call_openai(cfg, prompt, user_content)
 
     out_file = out_dir / f"ai_recommendations_{datetime.now().strftime('%Y-%m-%d')}.md"
     out_file.write_text(ai_reply, encoding="utf-8")
     print(f"Wrote AI recommendations to {out_file}")
+
+    send_pushover(cfg, ai_reply)
 
 
 if __name__ == "__main__":

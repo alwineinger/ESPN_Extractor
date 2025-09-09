@@ -36,6 +36,10 @@ class Config:
     free_agent_pool_size: int
     positions: List[str]
     projection_mode: str
+    openai_api_key: Optional[str] = None
+    openai_model: str = "gpt-4o-mini"
+    pushover_api_token: Optional[str] = None
+    pushover_user_key: Optional[str] = None
 
 
 def _as_float_scalar(v: Any, key_path: str = "value") -> float:
@@ -66,6 +70,9 @@ def load_config(path: str = "config.toml") -> Config:
     advice = cfg.get("advice", {})
     per_pos = advice.get("per_position_thresholds", {}) or {}
 
+    openai_cfg = cfg.get("openai", {})
+    pushover_cfg = cfg.get("pushover", {})
+
     out_dir = os.path.expanduser(os.path.expandvars(out.get("dir", "espn_extractor/data")))
     xlsx_path = os.path.expanduser(os.path.expandvars(out.get("xlsx_path", "espn_extractor/data/league_export.xlsx")))
 
@@ -84,6 +91,10 @@ def load_config(path: str = "config.toml") -> Config:
         free_agent_pool_size=int(advice.get("free_agent_pool_size", 50)),
         positions=list(advice.get("positions", ["QB", "RB", "WR", "TE", "D/ST", "K", "FLEX", "OP"])),
         projection_mode=str(advice.get("projection_mode", "league_plus_thresholds")),
+        openai_api_key=openai_cfg.get("api_key"),
+        openai_model=openai_cfg.get("model", "gpt-4o-mini"),
+        pushover_api_token=pushover_cfg.get("api_token"),
+        pushover_user_key=pushover_cfg.get("user_key"),
     )
 
 

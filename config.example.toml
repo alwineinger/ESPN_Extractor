@@ -15,7 +15,6 @@ swid    = "{YOUR_SWID_COOKIE}"
 
 [output]
 dir = "espn_extractor/data"
-write_xlsx = true
 xlsx_path  = "espn_extractor/data/league_export.xlsx"
 
 [advice]

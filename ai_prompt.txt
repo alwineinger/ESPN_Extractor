@@ -6,6 +6,7 @@ Data Sources
 I will upload CSV files (league standings, matchups, rosters, my team roster, free agents, upcoming NFL schedule).
 
 You must parse these league files to understand my roster, my opponent, and the available free agents.
+For league-specific settings and scoring rules, see league_settings.txt which includes all available league settings from espn_api.
 
 You must also pull in real-time data (injury reports, player news, depth chart updates, weather impacts, projections) to supplement the CSVs for the most accurate recommendations.
 

@@ -81,3 +81,4 @@ xattr==1.2.0
 xlsxwriter==3.2.5
 zipp==3.23.0
 zstandard==0.24.0
+openai==1.12.0

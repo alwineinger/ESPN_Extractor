@@ -63,12 +63,38 @@ def call_openai(cfg, prompt: str, user_content: str) -> str:
     return response.choices[0].message.content
 
 
-def send_pushover(cfg, message: str) -> None:
-    """Send a Pushover notification if credentials are configured."""
+def extract_action_priorities(ai_reply: str) -> str:
+    """Return the ``Action Priorities`` section from the AI reply."""
+    lines = ai_reply.splitlines()
+    capture = False
+    out: list[str] = []
+    for line in lines:
+        lower = line.strip().lower()
+        if lower.startswith("## action priorities"):
+            capture = True
+            continue
+        if capture and line.startswith("## "):
+            break
+        if capture:
+            out.append(line)
+    return "\n".join(out).strip()
+
+
+def send_pushover(cfg, ai_reply: str) -> None:
+    """Send the ``Action Priorities`` via Pushover if credentials exist."""
     token = cfg.pushover_api_token
     user = cfg.pushover_user_key
     if not token or not user:
         return
+    priorities = extract_action_priorities(ai_reply)
+    if priorities:
+        message = f"Action Priorities:\n{priorities}"
+    else:
+        message = "No action priorities found."
+    suffix = "\n[Not all actions included due to 1024 char limit]"
+    limit = 1024
+    if len(message) > limit:
+        message = message[: limit - len(suffix)].rstrip() + suffix
     try:
         requests.post(
             "https://api.pushover.net/1/messages.json",
@@ -76,7 +102,7 @@ def send_pushover(cfg, message: str) -> None:
                 "token": token,
                 "user": user,
                 "title": "Daily AI Summary",
-                "message": message[:1024],
+                "message": message,
             },
             timeout=10,
         ).raise_for_status()
@@ -91,6 +117,9 @@ def main() -> None:
 
     prompt = Path("ai_prompt.txt").read_text(encoding="utf-8")
     files = collect_files(out_dir)
+    league_settings = Path("league_settings.txt")
+    if league_settings.exists():
+        files.append(league_settings)
     user_content = build_user_content(files)
     ai_reply = call_openai(cfg, prompt, user_content)
 

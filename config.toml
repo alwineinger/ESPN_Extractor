@@ -14,7 +14,7 @@ espn_s2 = "AEBDfTcWxaY0Pgob45gd9UIqR08cevTuV4Rvsh%2FCyBOod2tQM0PiNN6MSWFYWQZjsAN
 swid    = "{3CAEAB1D-0B11-472C-B883-E1796D2817B8}"
 
 [output]
-dir = "data"
+dir = "~/Fantasy_Football/data"
 xlsx_path  = "data/league_export.xlsx"
 
 [advice]

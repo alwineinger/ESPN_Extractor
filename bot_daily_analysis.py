@@ -56,6 +56,7 @@ def _as_float_scalar(v: Any, key_path: str = "value") -> float:
 
 
 def load_config(path: str = "config.toml") -> Config:
+    path = os.path.expanduser(os.path.expandvars(path))
     with open(path, "rb") as f:
         cfg = tomllib.load(f)
 
@@ -65,6 +66,9 @@ def load_config(path: str = "config.toml") -> Config:
     advice = cfg.get("advice", {})
     per_pos = advice.get("per_position_thresholds", {}) or {}
 
+    out_dir = os.path.expanduser(os.path.expandvars(out.get("dir", "espn_extractor/data")))
+    xlsx_path = os.path.expanduser(os.path.expandvars(out.get("xlsx_path", "espn_extractor/data/league_export.xlsx")))
+
     return Config(
         league_id=int(league["league_id"]),
         season_year=int(league["season_year"]),
@@ -72,8 +76,8 @@ def load_config(path: str = "config.toml") -> Config:
         my_team_id=league.get("my_team_id"),
         espn_s2=(auth.get("espn_s2") or None),
         swid=(auth.get("swid") or None),
-        out_dir=out.get("dir", "espn_extractor/data"),
-        xlsx_path=out.get("xlsx_path", "espn_extractor/data/league_export.xlsx"),
+        out_dir=out_dir,
+        xlsx_path=xlsx_path,
         start_sit_threshold=_as_float_scalar(advice.get("start_sit_threshold", 1.5), "advice.start_sit_threshold"),
         per_pos_thresholds={str(k): _as_float_scalar(v, f"advice.per_position_thresholds.{k}") for k, v in per_pos.items()},
         lock_positions=[str(p) for p in advice.get("advice_lock_positions", [])],

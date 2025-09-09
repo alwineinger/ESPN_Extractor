@@ -15,6 +15,7 @@ tests/results/*.txt
 
 # Configuration
 config.py
+config.toml
 
 # IDE settings
 .idea

@@ -5,6 +5,7 @@ Reads OpenAI and Pushover credentials from ``config.toml``.  Environment
 variables ``OPENAI_API_KEY`` and ``OPENAI_MODEL`` are used as fallbacks.
 """
 import subprocess
+import sys
 import os
 from pathlib import Path
 from datetime import datetime
@@ -20,7 +21,8 @@ def run_bot_analysis() -> None:
     ``--write-analysis`` and ``--write-xlsx`` flags are intentionally omitted
     because this script only needs the standard data exports.
     """
-    subprocess.run(["python", "bot_daily_analysis.py"], check=True)
+    script = Path(__file__).with_name("bot_daily_analysis.py")
+    subprocess.run([sys.executable, str(script)], check=True)
 
 
 def collect_files(out_dir: Path) -> list[Path]:

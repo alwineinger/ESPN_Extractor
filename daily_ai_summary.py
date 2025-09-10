@@ -82,8 +82,8 @@ def extract_action_priorities(ai_reply: str) -> str:
     return "\n".join(out).strip()
 
 
-def send_pushover(cfg, ai_reply: str) -> None:
-    """Send the ``Action Priorities`` via Pushover if credentials exist."""
+def send_pushover(cfg, ai_reply: str, attachment: Path) -> None:
+    """Send the ``Action Priorities`` and an attachment via Pushover."""
     token = cfg.pushover_api_token
     user = cfg.pushover_user_key
     if not token or not user:
@@ -98,17 +98,23 @@ def send_pushover(cfg, ai_reply: str) -> None:
     if len(message) > limit:
         message = message[: limit - len(suffix)].rstrip() + suffix
     try:
-        requests.post(
-            "https://api.pushover.net/1/messages.json",
-            data={
-                "token": token,
-                "user": user,
-                "title": "Daily AI Summary",
-                "message": message,
-            },
-            timeout=10,
-        ).raise_for_status()
-    except Exception as exc:  # pragma: no cover - notification failures shouldn't crash
+        with attachment.open("rb") as fh:
+            requests.post(
+                "https://api.pushover.net/1/messages.json",
+                data={
+                    "token": token,
+                    "user": user,
+                    "title": "Daily AI Summary",
+                    "message": message,
+                },
+                files={"attachment": fh},
+                timeout=10,
+            ).raise_for_status()
+    except FileNotFoundError:
+        print(f"Pushover attachment not found: {attachment}")
+    except requests.RequestException as exc:
+        print(f"Failed to send Pushover notification: {exc}")
+    except Exception as exc:  # pragma: no cover - other failures shouldn't crash
         print(f"Failed to send Pushover notification: {exc}")
 
 
@@ -129,7 +135,7 @@ def main() -> None:
     out_file.write_text(ai_reply, encoding="utf-8")
     print(f"Wrote AI recommendations to {out_file}")
 
-    send_pushover(cfg, ai_reply)
+    send_pushover(cfg, ai_reply, out_file)
 
 
 if __name__ == "__main__":

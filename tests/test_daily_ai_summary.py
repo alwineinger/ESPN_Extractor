@@ -22,10 +22,10 @@ def test_extract_action_priorities():
     assert das.extract_action_priorities(reply) == "- First\n- Second"
 
 
-def test_send_pushover_truncates(monkeypatch):
+def test_send_pushover_truncates(monkeypatch, tmp_path):
     captured = {}
 
-    def fake_post(url, data, timeout):
+    def fake_post(url, data, files, timeout):
         captured['data'] = data
         class R:
             def raise_for_status(self):
@@ -34,9 +34,12 @@ def test_send_pushover_truncates(monkeypatch):
 
     monkeypatch.setattr(das.requests, 'post', fake_post)
 
+    attachment = tmp_path / "dummy.md"
+    attachment.write_text("test")
+
     long_actions = "\n".join(["- action" + str(i) + " " + "x" * 200 for i in range(50)])
     reply = f"## Action Priorities (Summary)\n{long_actions}"
-    das.send_pushover(DummyCfg(), reply)
+    das.send_pushover(DummyCfg(), reply, attachment)
     msg = captured['data']['message']
     assert len(msg) <= 1024
     assert 'Not all actions included' in msg
